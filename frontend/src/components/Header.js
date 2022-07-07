@@ -11,10 +11,10 @@ const Header = () => {
           <Navbar.Collapse id="navbarScroll">
             <Nav className="ms-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
               <Nav.Link href="/cart">
-                <i class="fa-solid fa-cart-shopping"></i> Cart
+                <i className="fa-solid fa-cart-shopping"></i> Cart
               </Nav.Link>
               <Nav.Link href="/login">
-                <i class="fa-solid fa-user"></i>Sign In
+                <i className="fa-solid fa-user"></i>Sign In
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
