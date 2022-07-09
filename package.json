@@ -1,0 +1,19 @@
+{
+  "name": "e-shop",
+  "version": "1.0.0",
+  "description": "MERN e-commerce Project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JunayedKhanNoor/eShop_mern.git"
+  },
+  "author": "Junayed",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JunayedKhanNoor/eShop_mern/issues"
+  },
+  "homepage": "https://github.com/JunayedKhanNoor/eShop_mern#readme"
+}
