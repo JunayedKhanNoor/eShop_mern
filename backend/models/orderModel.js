@@ -9,9 +9,9 @@ const orderSchema = mongoose.Schema(
     },
     orderItems: [
       {
-        name: { type: string, required: true },
+        name: { type: String, required: true },
         qty: { type: Number, required: true },
-        image: { type: string, required: true },
+        image: { type: String, required: true },
         price: { type: Number, required: true },
         product: {
           type: mongoose.Schema.Types.ObjectId,
@@ -21,25 +21,20 @@ const orderSchema = mongoose.Schema(
       },
     ],
     shippingAddress: {
-      address: { type: string, required: true },
-      city: { type: string, required: true },
-      postalCode: { type: string, required: true },
-      country: { type: string, required: true },
+      address: { type: String, required: true },
+      city: { type: String, required: true },
+      postalCode: { type: String, required: true },
+      country: { type: String, required: true },
     },
     paymentMethod: {
       type: String,
       required: true,
     },
     paymentResult: {
-      id: { type: string },
-      status: { type: string },
-      update_time: { type: string },
-      email_address: { type: string },
-    },
-    taxPrice: {
-      type: Number,
-      required: true,
-      default: 0.0,
+      id: { type: String },
+      status: { type: String },
+      update_time: { type: String },
+      email_address: { type: String },
     },
     taxPrice: {
       type: Number,

@@ -17,23 +17,23 @@ const productSchema = mongoose.Schema(
       ref: 'User',
     },
     name: {
-      type: string,
+      type: String,
       required: true,
     },
     image: {
-      type: string,
+      type: String,
       required: true,
     },
     brand: {
-      type: string,
+      type: String,
       required: true,
     },
     category: {
-      type: string,
+      type: String,
       required: true,
     },
     description: {
-      type: string,
+      type: String,
       required: true,
     },
     reviews: [reviewSchema],
