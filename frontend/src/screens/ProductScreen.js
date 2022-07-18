@@ -16,9 +16,9 @@ const ProductScreen = () => {
     fetchProduct();
   }, [id]);
   return (
-    <>
+    <div className="min-vh-100">
       <Link to="/" className="btn btn-light my-3">
-        Go Back
+        <i className="fa-solid fa-angle-left"></i>Go Back
       </Link>
       <Row>
         <Col md={6}>
@@ -66,7 +66,7 @@ const ProductScreen = () => {
           </Card>
         </Col>
       </Row>
-    </>
+    </div>
   );
 };
 
