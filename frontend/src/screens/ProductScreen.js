@@ -20,7 +20,7 @@ import Message from '../components/Message';
 import Rating from '../components/Rating';
 
 const ProductScreen = () => {
-  const [qty, setQty] = useState(0);
+  const [qty, setQty] = useState(1);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const productDetails = useSelector((state) => state.productDetails);
@@ -32,6 +32,7 @@ const ProductScreen = () => {
   const addToCartHandler = (e) => {
     e.preventDefault();
     navigate(`/cart/${id}/?qty=${qty}`);
+    console.log(qty);
   };
   return (
     <div className="min-vh-100">
