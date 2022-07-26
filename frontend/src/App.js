@@ -9,13 +9,15 @@ const App = () => {
   return (
     <>
       <Header />
-      <Container>
-        <Routes>
-          <Route path="/" element={<HomeScreen />} />
-          <Route path="/product/:id" element={<ProductScreen />} />
-          <Route path="/cart/:id" element={<CartScreen />} />
-        </Routes>
-      </Container>
+      <main className="py-3">
+        <Container>
+          <Routes>
+            <Route path="/" element={<HomeScreen />} />
+            <Route path="/product/:id" element={<ProductScreen />} />
+            <Route path="/cart/:id" element={<CartScreen />} />
+          </Routes>
+        </Container>
+      </main>
       <Footer />
     </>
   );

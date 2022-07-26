@@ -32,10 +32,9 @@ const ProductScreen = () => {
   const addToCartHandler = (e) => {
     e.preventDefault();
     navigate(`/cart/${id}/?qty=${qty}`);
-    console.log(qty);
   };
   return (
-    <div className="min-vh-100">
+    <div>
       <Link to="/" className="btn btn-light my-3">
         <i className="fa-solid fa-angle-left"></i>Go Back
       </Link>
