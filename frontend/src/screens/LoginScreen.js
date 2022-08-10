@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { Button, Col, Form, FormControl, FormGroup, FormLabel, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { login } from '../actions/userActions';
 import FormContainer from '../components/FormContainer';
 import Loader from '../components/Loader';
@@ -16,12 +16,14 @@ const LoginScreen = () => {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
+  const location = useLocation();
 
+  let from = location.state?.from?.pathname || '/';
   useEffect(() => {
     if (userInfo) {
-      navigate('/');
+      navigate(from, { replace: true });
     }
-  }, [navigate, userInfo]);
+  }, [navigate, userInfo, from]);
   const submitHandler = (e) => {
     e.preventDefault();
     // Dispatch Login
