@@ -92,7 +92,9 @@ const ProfileScreen = () => {
           </Button>
         </Form>
       </Col>
-      <Col md={9}></Col>
+      <Col md={9}>
+        <h2>My Orders</h2>
+      </Col>
     </Row>
   );
 };
