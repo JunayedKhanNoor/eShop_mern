@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { Button, Col, Form, FormControl, FormGroup, FormLabel, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
-import { getUserDetails } from '../actions/userActions';
+import { getUserDetails, updateUserProfile } from '../actions/userActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 
@@ -20,6 +20,8 @@ const ProfileScreen = () => {
   const { loading, error, user } = userDetails;
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  const { success } = userUpdateProfile;
   let location = useLocation();
 
   useEffect(() => {
@@ -30,17 +32,17 @@ const ProfileScreen = () => {
       setEmail(user.email);
     }
   }, [navigate, userInfo, dispatch, user, location]);
-  if (!userInfo) {
-    //   navigate('/login');
-    return <Navigate to="/login" state={{ from: location }} replace />;
-  }
+  // if (!userInfo) {
+  //      navigate('/login');
+  //   return <Navigate to="/login" state={{ from: location }} replace />;
+  // }
   const submitHandler = (e) => {
     e.preventDefault();
     // Dispatch Login
     if (password !== confirmPassword) {
       setMessage('Password do not match');
     } else {
-      //   dispatch(register(name, email, password));
+      dispatch(updateUserProfile({ id: user._id, name, email, password }));
     }
   };
   return (
@@ -49,6 +51,7 @@ const ProfileScreen = () => {
         <h2>User Profile</h2>
         {message && <Message variant="danger">{message}</Message>}
         {error && <Message variant="danger">{error}</Message>}
+        {success && <Message variant="success">Profile Updated</Message>}
         {loading && <Loader />}
         <Form onSubmit={submitHandler}>
           <FormGroup controlId="name">
