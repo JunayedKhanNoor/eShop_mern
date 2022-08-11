@@ -31,7 +31,7 @@ const ProductScreen = () => {
   }, [dispatch, id]);
   const addToCartHandler = (e) => {
     e.preventDefault();
-    navigate(`/cart/${id}/?qty=${qty}`);
+    navigate(`/cart/?id=${id}&qty=${qty}`);
   };
   return (
     <div>

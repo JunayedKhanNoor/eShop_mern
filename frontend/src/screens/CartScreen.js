@@ -15,9 +15,10 @@ import {
 import Message from '../components/Message';
 const CartScreen = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
+  // const { id } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const qty = Number(searchParams.get('qty'));
+  const id = searchParams.get('id');
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
