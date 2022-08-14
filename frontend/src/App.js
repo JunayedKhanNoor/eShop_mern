@@ -10,6 +10,7 @@ import RegisterScreen from './screens/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import RequiredAuth from './ProtectRoute/RequiredAuth';
 import ShippingScreen from './screens/ShippingScreen';
+import PaymentScreen from './screens/PaymentScreen';
 const App = () => {
   return (
     <>
@@ -35,6 +36,14 @@ const App = () => {
               element={
                 <RequiredAuth>
                   <ShippingScreen />
+                </RequiredAuth>
+              }
+            ></Route>
+            <Route
+              path="/payment"
+              element={
+                <RequiredAuth>
+                  <PaymentScreen />
                 </RequiredAuth>
               }
             ></Route>
