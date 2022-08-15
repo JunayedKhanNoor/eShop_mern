@@ -1,12 +1,16 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { Button, Card, Col, Image, ListGroup, ListGroupItem, Row } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { createOrder, orderResetState } from '../actions/orderActions';
 import CheckoutSteps from '../components/CheckoutSteps';
 import Message from '../components/Message';
 
 const PlaceOrderScreen = () => {
+  const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
   const addDecimals = (num) => {
     return (Math.round(num * 100) / 100).toFixed(2);
   };
@@ -22,8 +26,27 @@ const PlaceOrderScreen = () => {
     Number(cart.taxPrice)
   ).toFixed(2);
 
-  const placeOrderHandler = (e) => {
-    console.log(cart.cartItems.length);
+  const orderCreate = useSelector((state) => state.orderCreate);
+  const { order, success, error } = orderCreate;
+  useEffect(() => {
+    if (success) {
+      dispatch(orderResetState());
+      navigate(`/order/${order._id}`);
+    }
+  }, [success, navigate, order, dispatch]);
+
+  const placeOrderHandler = () => {
+    dispatch(
+      createOrder({
+        orderItems: cart.orderItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemsPrice: cart.itemsPrice,
+        shippingPrice: cart.shippingPrice,
+        totalPrice: cart.totalPrice,
+        taxPrice: cart.taxPrice,
+      })
+    );
   };
   return (
     <>
@@ -102,6 +125,7 @@ const PlaceOrderScreen = () => {
                   <Col>${cart.totalPrice}</Col>
                 </Row>
               </ListGroupItem>
+              <ListGroupItem>{error && <Message variant="danger">{error}</Message>}</ListGroupItem>
               <ListGroupItem>
                 <Button
                   type="button"
