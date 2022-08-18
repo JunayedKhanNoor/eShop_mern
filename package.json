@@ -24,12 +24,14 @@
   "homepage": "https://github.com/JunayedKhanNoor/eShop_mern#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "bootstrap": "^5.2.0",
     "colors": "^1.4.0",
     "concurrently": "^7.2.2",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.4.4"
+    "mongoose": "^6.4.4",
+    "react-bootstrap": "^2.5.0"
   }
 }
