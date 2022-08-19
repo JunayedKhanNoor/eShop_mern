@@ -150,7 +150,7 @@ const OrderScreen = () => {
                   <Col>${order.totalPrice}</Col>
                 </Row>
               </ListGroupItem>
-              {!order.isPaid && (
+              {/* {!order.isPaid && (
                 <ListGroupItem>
                   {loadingPay && <Loader />}
                   {!sdkReady ? (
@@ -159,7 +159,10 @@ const OrderScreen = () => {
                     <PayPalButton amount={order.totalPrice} onSuccess={successPaymentHandler} />
                   )}
                 </ListGroupItem>
-              )}
+              )} */}
+              <ListGroupItem>
+                <Message>PayPal Buttons Disabled for live demo...</Message>
+              </ListGroupItem>
             </ListGroup>
           </Card>
         </Col>
