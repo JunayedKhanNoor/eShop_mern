@@ -13,6 +13,8 @@ import ShippingScreen from './screens/ShippingScreen';
 import PaymentScreen from './screens/PaymentScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import OrderScreen from './screens/OrderScreen';
+import UserListScreen from './screens/UserListScreen';
+import RequiredAdmin from './ProtectRoute/RequiredAdmin';
 const App = () => {
   return (
     <>
@@ -56,6 +58,14 @@ const App = () => {
                 <RequiredAuth>
                   <PlaceOrderScreen />
                 </RequiredAuth>
+              }
+            ></Route>
+            <Route
+              path="/admin/userList"
+              element={
+                <RequiredAdmin>
+                  <UserListScreen />
+                </RequiredAdmin>
               }
             ></Route>
           </Routes>
