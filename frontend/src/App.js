@@ -15,6 +15,7 @@ import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import OrderScreen from './screens/OrderScreen';
 import UserListScreen from './screens/UserListScreen';
 import RequiredAdmin from './ProtectRoute/RequiredAdmin';
+import UserEditScreen from './screens/UserEditScreen';
 const App = () => {
   return (
     <>
@@ -65,6 +66,14 @@ const App = () => {
               element={
                 <RequiredAdmin>
                   <UserListScreen />
+                </RequiredAdmin>
+              }
+            ></Route>
+            <Route
+              path="/admin/user/:id/edit"
+              element={
+                <RequiredAdmin>
+                  <UserEditScreen />
                 </RequiredAdmin>
               }
             ></Route>
