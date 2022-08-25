@@ -21,4 +21,21 @@ const getProductById = asyncHandler(async (req, res) => {
   }
 });
 
+//@desc delete s  product
+//@route DELETE /api/products/:id
+//@access admin/protected
+const deleteProduct = asyncHandler(async (req, res) => {
+  const product = await Product.findById(req.params.id);
+  if (product) {
+    // if (req.user._id === product.user._id) {
+    //   //If I want, only the admin who added the product , only he can delete
+    // }
+    await product.remove();
+    res.json({ message: 'Product removed' });
+  } else {
+    res.status(404);
+    throw new Error('Product not found');
+  }
+});
+
 export { getProducts, getProductById, deleteProduct };
