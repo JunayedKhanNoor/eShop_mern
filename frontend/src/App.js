@@ -16,6 +16,7 @@ import OrderScreen from './screens/OrderScreen';
 import UserListScreen from './screens/UserListScreen';
 import RequiredAdmin from './ProtectRoute/RequiredAdmin';
 import UserEditScreen from './screens/UserEditScreen';
+import ProductListScreen from './screens/ProductListScreen';
 const App = () => {
   return (
     <>
@@ -74,6 +75,14 @@ const App = () => {
               element={
                 <RequiredAdmin>
                   <UserEditScreen />
+                </RequiredAdmin>
+              }
+            ></Route>
+            <Route
+              path="/admin/productList"
+              element={
+                <RequiredAdmin>
+                  <ProductListScreen />
                 </RequiredAdmin>
               }
             ></Route>
