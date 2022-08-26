@@ -1,5 +1,6 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Button, Form, FormControl, FormGroup, FormLabel } from 'react-bootstrap';
+import { Button, Form, FormControl, FormGroup, FormLabel, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { listProductDetails, updateProduct } from '../actions/productActions';
@@ -23,6 +24,7 @@ const ProductEditScreen = () => {
   const [category, setCategory] = useState('');
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState('');
+  const [uploading, setUploading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -44,12 +46,34 @@ const ProductEditScreen = () => {
       }
     }
   }, [dispatch, product, id, successUpdate, navigate]);
+
+  const uploadHandler = async (e) => {
+    e.preventDefault();
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('image', file);
+    setUploading(true);
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      };
+      const { data } = await axios.post('/api/upload', formData, config);
+      setImage(data);
+      setUploading(false);
+    } catch (error) {
+      setUploading(false);
+      console.error(error);
+    }
+  };
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(
       updateProduct({ _id: id, name, image, price, brand, category, countInStock, description })
     );
   };
+
   return (
     <>
       <Link to="/admin/productList" className="btn btn-light my-3">
@@ -92,6 +116,16 @@ const ProductEditScreen = () => {
                 onChange={(e) => setImage(e.target.value)}
               ></FormControl>
             </FormGroup>
+            <FormGroup controlId="formFile" className="mb-3">
+              <FormLabel>Choose Image file </FormLabel>
+              <FormControl type="file" onChange={uploadHandler}></FormControl>
+            </FormGroup>
+            {uploading && (
+              <>
+                <Spinner animation="border" role="status"></Spinner>
+                <span>Loading...</span>
+              </>
+            )}
             <FormGroup controlId="brand">
               <FormLabel>Brand</FormLabel>
               <FormControl
