@@ -81,7 +81,11 @@ const ProductScreen = () => {
                     <Row>
                       <Col>Qty</Col>
                       <Col>
-                        <FormSelect value={qty} onChange={(e) => setQty(e.target.value)}>
+                        <FormSelect
+                          className="text-dark"
+                          value={qty}
+                          onChange={(e) => setQty(e.target.value)}
+                        >
                           {[...Array(product.countInStock).keys()].map((x) => (
                             <option key={x + 1} value={x + 1}>
                               {x + 1}

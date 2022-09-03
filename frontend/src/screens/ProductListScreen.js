@@ -2,12 +2,14 @@ import React, { useEffect } from 'react';
 import { Button, Col, Row, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import { createProduct, deleteProduct, listProducts } from '../actions/productActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { PRODUCT_CREATE_RESET } from '../constants/productConstants';
 
 const ProductListScreen = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
@@ -25,6 +27,9 @@ const ProductListScreen = () => {
       dispatch(deleteProduct(id));
     }
   };
+  if (successCreate) {
+    navigate(`/admin/product/${createdProduct._id}/edit`);
+  }
   const createProductHandler = () => {
     dispatch(createProduct());
   };
